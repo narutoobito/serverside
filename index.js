@@ -24,7 +24,7 @@ response.json(data);
 });
 app.post('/api',(request,response)=>{
 database.insert(request.body);
-data=request.body;
+const data=request.body;
 const timestamp=Date.now();
 data.timestamp=timestamp;
 response.json({
@@ -39,8 +39,8 @@ longitude: data.lon
 app.get('/weather/:latlon', async (request,response)=>
 {
    const latlon= request.params['latlon'].split(',');
-   lat=latlon[0];
-   lon=latlon[1];
+  const lat=latlon[0];
+  const lon=latlon[1];
    apikey= process.env.API_KEY;
    const weather_url="https://api.darksky.net/forecast/"+ apikey + "/"+lat+","+lon;
 
