@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <script src="package/p5.js"></script>
+    <script src="package/p5.dom.js"></script>
+</head>
+<body>
+<h1>this is dr mashoor goolati</h1>
+<p><a href="index.html">add</a>|
+<a href="all.html">list</a>
+</p>
+<script>
+function setup(){
+ noCanvas();
+ //capture=document.getElementById('capture');
+ //video=createCapture(VIDEO);
+ //video.size(400,300);
+ if('geolocation' in navigator){
+    console.log("geolocation available");
+    navigator.geolocation.getCurrentPosition(
+    async position=>{console.log(position);
+    lat=position.coords.latitude;
+    lon=position.coords.longitude;
+    document.getElementById("lat").textContent=lat;
+    document.getElementById("lon").textContent=lon ;
+    const api_url='weather/'+lat+','+lon;
+    response= await fetch(api_url);
+    json= await response.json();
+    weather=json.weather;
+    const air = json.aq.results[0].measurements[0];
+    console.log(json);
+    document.getElementById('weather').textContent= weather.currently.summary;
+    document.getElementById('temp').textContent= weather.currently.temperature;
+    if(air.value=='null')
+   {document.getElementById('air').textContent='no data';}
+  else
+    {document.getElementById('air').textContent= air.value;}
+
+
+    let button= document.getElementById('submit');
+    button.onmousedown=async function (){
+    var inputname= document.getElementById('input').value;
+   // video.loadPixels();
+    //const img64= video.canvas.toDataURL();
+    const data={lat,lon,inputname};
+    const options={
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+    };
+
+    const response=await fetch('/api',options);
+    const json= await response.json();
+    console.log(json);
+    }
+    });
+    }
+    else{
+    console.log("geolocation not available");
+    }
+    }
+</script>
+<p>latitude=<span id="lat"></span></p>
+<p>longitude=<span id="lon"></span></p>
+<p> weather is <span id="weather"></span> and temperature is <span id="temp"></span>&deg F</p>
+<p>air qualtity is <span id="air"></span></p>
+<input id="input"></input>
+<button id="submit">submit</button>
+</body>
+</html>

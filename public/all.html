@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body id="body"><h1>Data Selfie App</h1>
+<p><a href="index.html">add</a>|
+<a href="all.html">list</a>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
+    <style>
+    #mapid { height: 180px;}
+    </style>
+</p>
+<div id="mapid"></div>
+<script>
+
+
+    const mymap = L.map('mapid').setView([0, 0], 1);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    }).addTo(mymap);
+
+    fetch('/api').then(response=>
+    {
+    response.json().then(data=>{
+    for(elt of data){
+
+
+     alien = L.icon({
+    iconUrl: 'alien.jpg',
+
+    iconSize:     [50, 32], // size of the icon
+    iconAnchor:   [25, 17], // point of the icon which will correspond to marker's location
+    });
+    const marker = L.marker([elt.lat, elt.lon ],{icon: alien}).addTo(mymap);
+
+
+
+
+    const root= document.createElement('ol');
+    const name= document.createElement('div');
+    const date= document.createElement('div');
+    const lat= document.createElement('div');
+    const lon= document.createElement('div');
+  //  const img= document.createElement('img');
+      name.textContent= 'name: '+elt.inputname;
+
+    const datestring = new Date(elt.timestamp).toLocaleString();
+    date.textContent= datestring;
+    //img.src= elt.img64
+      lat.textContent= elt.lat;
+      lon.textContent= elt.lon;
+
+       root.append(name ,lat,lon ,date );
+        document.body.append(root);
+}
+
+
+    });
+    });
+</script>
+
+
+</body>
+</html>
