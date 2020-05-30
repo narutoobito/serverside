@@ -39,8 +39,8 @@ longitude: data.lon
 app.get('/weather/:latlon', async (request,response)=>
 {
    const latlon= request.params['latlon'].split(',');
-   const lat=latlon[0];
-   const lon=latlon[1];
+  const lat=latlon[0];
+  const lon=latlon[1];
    apikey= process.env.API_KEY;
    const weather_url="https://api.darksky.net/forecast/"+ apikey + "/"+lat+","+lon;
 
