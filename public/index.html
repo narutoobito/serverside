@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Title</title>
-     <script src="package/p5.js"></script>
-    <script src="package/p5.dom.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<h1>this is dr mashoor goolati</h1>
-<p><a href="index.html">add</a>|
-<a href="all.html">list</a>
+<h1 class="main-title">WEATHER WEB APP</h1>
+<p class="navig"><a class="nav-btn" href="index.html" >add</a>|
+<a href="all.html" class="nav-btn">list</a>
 </p>
 <script>
-function setup(){
- noCanvas();
  //capture=document.getElementById('capture');
  //video=createCapture(VIDEO);
  //video.size(400,300);
@@ -62,13 +60,13 @@ function setup(){
     else{
     console.log("geolocation not available");
     }
-    }
+
 </script>
 <p>latitude=<span id="lat"></span></p>
 <p>longitude=<span id="lon"></span></p>
 <p> weather is <span id="weather"></span> and temperature is <span id="temp"></span>&deg F</p>
 <p>air qualtity is <span id="air"></span></p>
-<input id="input"></input>
+<input id="input" placeholder="your name"></input>
 <button id="submit">submit</button>
 </body>
 </html>
