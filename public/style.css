@@ -1,0 +1,95 @@
+*{
+padding: 0;
+background: transparent;
+}
+
+html{
+background: linear-gradient(45deg,black,orange,lightblue,blue,white);
+background-size:300%;
+color: white;
+background-position: right;
+animation: bg 20000ms infinite alternate;
+}
+
+@keyframes bg{
+0%{
+background-position:left;
+}
+100%{
+background-position:right;
+}
+}
+
+.main-title{
+padding: 10px;
+background: #330150;
+color: #FFFFFF;
+border-bottom: 2px solid rgba(255,255,255,0.9);
+}
+
+.navig{
+ text-decoration: 'none';
+ color: white;
+ text-size: 3em;
+ display: flex;
+
+}
+.nav-btn{
+ padding : 3px;
+ padding-right: 10px;
+ background-color: orange;
+ color: black;
+ border-bottom: 2px solid yellow;
+ font-size: 1.3em;
+ margin: 4px;
+}
+.nav-btn:hover{
+ border: 3px solid blue;
+ padding: 10px;
+ background: linear-gradient(blue , red);
+ color: white;
+}
+
+#submit{
+color: white;
+padding: 1em;
+cursor: pointer;
+background: linear-gradient(#332211,#998877);
+background: linear-gradient(to right,red,blue);
+}
+#submit:hover{
+padding: 1.1em;
+border: 3px solid white;
+background: linear-gradient(to right,red,blue);
+background-size: 200%;
+background-position: right;
+transition: background-position,8000ms, ease-in-out;
+}
+
+#input{
+color: white;
+background: #111111;
+font-size: 2em;
+}
+
+@media (max-width: 600px){
+body{
+
+}
+.main-title{
+font-size: 20px;
+width:60%;
+}
+#input{
+width:50%;
+font-size: 1.5em;
+
+}
+#submit{
+display: block;
+border-radius:50%;
+margin: 1em 2em 0 0;
+justify-self: center;
+}
+
+}
